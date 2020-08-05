@@ -1,0 +1,49 @@
+
+buildscript {
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '1.5.8.RELEASE'
+}
+apply plugin: 'io.spring.dependency-management'
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-configuration-processor"
+
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
+    compile('org.springframework.boot:spring-boot-starter-undertow')
+    compile("org.springframework.boot:spring-boot-starter-jdbc") {
+        exclude module: "spring-boot-starter-tomcat"
+        exclude module: "tomcat-jdbc"
+    }
+    compile('org.springframework:spring-webmvc')
+    compile('org.hibernate:hibernate-validator')
+    compile('com.fasterxml.jackson.module:jackson-module-parameter-names')
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-jdk8')
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310')
+    compile('org.springframework.boot:spring-boot-starter-aop')
+
+
+    compile "io.swagger:swagger-core:1.6.1"
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('org.springframework.boot:spring-boot-starter-logging')
+
+}
